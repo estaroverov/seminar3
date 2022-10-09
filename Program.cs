@@ -85,3 +85,22 @@ int[] secondDot = DefineDots(3,false);
 PrintArray(firstDot);
 PrintArray(secondDot);
 double d = FindDistance3d(firstDot,secondDot);
+
+
+////Задача 23
+////принимает на вход число (N) и выдаёт таблицу кубов чисел от 1 до N.
+Console.Write("Введите число:");
+int number = int.Parse(Console.ReadLine());
+int getCube(int number)
+{
+    return number*number*number;
+}
+
+void PrintCubeTable(int number)
+{
+    for(int i = 1; i <= number; i++)
+    {
+        Console.Write(getCube(i) + " ");
+    }
+}
+PrintCubeTable(number);
