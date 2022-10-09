@@ -41,15 +41,17 @@ void PrintArray(int [] arr)
         Console.Write(i + " ");
     }
 }
-int [] FillManualArray(int length, int[] arr)
+int [] FillManualArray(int length)
 {
+    int [] arr = new int [length];
     Console.Write("Введите координаты точки:");
     for(int i=0; i<length; i++)
         arr[i] = int.Parse(Console.ReadLine());
     return arr;
 }
-int [] FillRandomArray(int length, int[] arr, int minVal = -100, int maxVal = 100)
+int [] FillRandomArray(int length, int minVal = -100, int maxVal = 100)
 {
+    int [] arr = new int [length];
     for(int i = 0; i < length; i++)
     {
         arr[i] = new Random().Next(minVal,maxVal);
@@ -58,13 +60,11 @@ int [] FillRandomArray(int length, int[] arr, int minVal = -100, int maxVal = 10
 }
 int [] DefineDots(int dimention = 3, bool isRandom = true)
 {
-    int [] arr = new int [dimention];
     if(isRandom == true)
-        return FillRandomArray(dimention,arr);
+        return FillRandomArray(dimention);
     else
-        return FillManualArray(dimention,arr);
+        return FillManualArray(dimention);
     
-
 }
 
 double FindDistance3d(int[] a, int[] b)
@@ -104,3 +104,32 @@ void PrintCubeTable(int number)
     }
 }
 PrintCubeTable(number);
+
+////////////////////////
+////удаляет элемент по индексу из массива чисел
+int [] FilterArray(int [] arr, int position)
+{
+    int len = arr.Length;
+    int [] NewArr = new int [len - 1];
+    int j = 0;
+
+    for(int i = 0; i<len; i ++)
+    {
+        if(i != position)
+        {
+            NewArr[j] = arr[i];
+            j++;
+        }        
+    } 
+    return NewArr;
+}
+Console.Write("Введите размерность массива:");
+int size = int.Parse(Console.ReadLine());
+Console.Write("Введите индекс для удаления элемента:");
+int index = int.Parse(Console.ReadLine());
+int[] newArr = FillRandomArray(size);
+Console.Write("Исходный массив:");
+PrintArray(newArr);
+Console.WriteLine();
+Console.Write("Результирующий массив:");
+PrintArray(FilterArray(newArr,index));
